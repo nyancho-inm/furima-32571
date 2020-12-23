@@ -30,7 +30,7 @@
 | area_id      | integer            | null: false                    |
 | day_id       | integer            | null: false                    |
 | prise_id     | integer            | null: false                    |
-| user_id      | references         | null: false, foreign_key: true |
+| user         | references         | null: false, foreign_key: true |
 
 ### Association
 
@@ -56,12 +56,12 @@
 | Column         | Type       | Options                        |
 | -------------- | -----------| ------------------------------ |
 | postal         | string     | null: false                    |
-| prefectures    | string     | null: false                    |
+| prefecture_id  | integer    | null: false                    |
 | municipalities | string     | null: false                    |
 | address        | text       | null: false                    |
 | phone          | string     | null: false                    |
-| user           | references | null: false, foreign_key: true |
-| item           | references | null: false, foreign_key: true |
+| record         | references | null: false, foreign_key: true |
+
 
 ### Association
 
