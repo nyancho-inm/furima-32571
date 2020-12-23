@@ -2,14 +2,16 @@
 
 ## users テーブル
 
-| Column     | Type   | Options                   |
-| ---------- | ------ | ------------------------- |
-| email      | string | null: false, unique: true |
-| password   | string | null: false               |
-| nickname   | string | null: false               |
-| first_name | string | null: false               |
-| last_name  | string | null: false               |
-| date       | string | null: false               |
+| Column               | Type   | Options                   |
+| -------------------- | ------ | ------------------------- |
+| email                | string | null: false, unique: true |
+| encrypted_password   | string | null: false               |
+| nickname             | string | null: false               |
+| first_name           | string | null: false               |
+| last_name            | string | null: false               |
+| first_name_kana      | string | null: false               |
+| last_name_kana       | string | null: false               |
+| birthday             | date   | null: false               |
 
 ### Association
 
@@ -18,18 +20,17 @@
 
 ## items テーブル
 
-| Column      | Type               | Options                        |
-| ----------- | ------------------ | ------------------------------ |
-| item_name   | string             | null: false                    |
-| category    | string             | null: false                    |
-| description | text               | null: false                    |
-| condition   | text               | null: false                    |
-| fee         | string             | null: false                    |
-| area        | string             | null: false                    |
-| days        | string             | null: false                    |
-| prise       | string             | null: false                    |
-| image       | ActiveStorageで実装 | null: false                    |
-| user        | references         | null: false, foreign_key: true |
+| Column       | Type               | Options                        |
+| ------------ | ------------------ | ------------------------------ |
+| item_name    | string             | null: false                    |
+| description  | text               | null: false                    |
+| category_id  | integer            | null: false                    |
+| condition_id | integer            | null: false                    |
+| fee_id       | integer            | null: false                    |
+| area_id      | integer            | null: false                    |
+| day_id       | integer            | null: false                    |
+| prise_id     | integer            | null: false                    |
+| user_id      | references         | null: false, foreign_key: true |
 
 ### Association
 
@@ -59,6 +60,8 @@
 | municipalities | string     | null: false                    |
 | address        | text       | null: false                    |
 | phone          | string     | null: false                    |
+| user           | references | null: false, foreign_key: true |
+| item           | references | null: false, foreign_key: true |
 
 ### Association
 
