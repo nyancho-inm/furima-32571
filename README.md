@@ -9,12 +9,12 @@
 | nickname   | string | null: false               |
 | first_name | string | null: false               |
 | last_name  | string | null: false               |
-| birthday   | string | null: false               |
+| date       | string | null: false               |
 
 ### Association
 
 - has_many :items
-- has_many :purchases
+- has_many :records
 
 ## items テーブル
 
@@ -34,9 +34,23 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one :record
 
-## purchases テーブル
+## Records テーブル
+
+| Column      | Type               | Options                        |
+| ----------- | ------------------ | ------------------------------ |
+| user        | references         | null: false, foreign_key: true |
+| item        | references         | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping
+
+
+## shippings テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | -----------| ------------------------------ |
@@ -45,7 +59,7 @@
 | municipalities | string     | null: false                    |
 | address        | text       | null: false                    |
 | phone          | string     | null: false                    |
-| user           | references | null: false, foreign_key: true |
 
-- belongs_to :user
-- belongs_to :item
+### Association
+
+- belongs_to :record
