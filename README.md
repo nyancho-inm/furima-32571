@@ -29,7 +29,7 @@
 | fee_id       | integer            | null: false                    |
 | area_id      | integer            | null: false                    |
 | day_id       | integer            | null: false                    |
-| prise_id     | integer            | null: false                    |
+| price        | string             | null: false                    |
 | user         | references         | null: false, foreign_key: true |
 
 ### Association
@@ -59,7 +59,7 @@
 | prefecture_id  | integer    | null: false                    |
 | municipalities | string     | null: false                    |
 | address        | string     | null: false                    |
-| building       | string     | null: false                    |
+| building       | string     |                                |
 | phone          | string     | null: false                    |
 | record         | references | null: false, foreign_key: true |
 
