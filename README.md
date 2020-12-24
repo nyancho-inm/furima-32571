@@ -58,10 +58,10 @@
 | postal         | string     | null: false                    |
 | prefecture_id  | integer    | null: false                    |
 | municipalities | string     | null: false                    |
-| address        | text       | null: false                    |
+| address        | string     | null: false                    |
+| building       | string     | null: false                    |
 | phone          | string     | null: false                    |
 | record         | references | null: false, foreign_key: true |
-
 
 ### Association
 
