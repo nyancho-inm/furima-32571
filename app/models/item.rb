@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :fee_id, numericality: { other_than: 1 ,message: 'Select'}
     validates :area_id, numericality: { other_than: 1 ,message: 'Select'}
     validates :day_id, numericality: { other_than: 1 ,message: 'Select'}
-    validates :price, format: { with: /\A[0-9]+\z/, message: 'Price Half-width number'}, numericality: { greater_than: 299, less_than: 9999999, message: 'Price Out of setting range' }
+    validates :price, format: { with: /\A[0-9]+\z/, message: 'Half-width number'}, numericality: { greater_than: 299, less_than: 10000000, message: 'Out of setting range' }
   end
   has_one_attached :image
   
