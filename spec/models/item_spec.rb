@@ -9,10 +9,6 @@ RSpec.describe Item, type: :model do
       it "image,description,category_id,condition_id,fee_id,area_id,day_id,price,user_idがあれば出品できる" do
         expect(@item).to be_valid
       end
-      it "priceが半角数字なら出品できる" do
-        @item.price = "12345"
-        expect(@item).to be_valid
-      end
       it "priceが300以上なら出品できる" do
         @item.price = "300"
         expect(@item).to be_valid
