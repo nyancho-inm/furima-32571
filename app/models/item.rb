@@ -8,18 +8,24 @@ class Item < ApplicationRecord
   belongs_to_active_hash :area
   belongs_to_active_hash :day
 
-
   with_options presence: true do
     validates :image
     validates :item_name
     validates :description
-    validates :category_id, numericality:{ other_than: 1 ,message: 'Select'}
-    validates :condition_id, numericality: { other_than: 1 ,message: 'Select'}
-    validates :fee_id, numericality: { other_than: 1 ,message: 'Select'}
-    validates :area_id, numericality: { other_than: 1 ,message: 'Select'}
-    validates :day_id, numericality: { other_than: 1 ,message: 'Select'}
+    validates :category_id
+    validates :condition_id
+    validates :area_id
+    validates :day_id
     VALID_PRICE_HALF = /\A[0-9]+\z/
     validates :price, numericality: { with: VALID_PRICE_HALF, message: 'Half-width number'}               
+  end
+
+  with_options numericality:{ other_than: 1 ,message: 'Select'} do
+    validates :category_id
+    validates :condition_id
+    validates :fee_id
+    validates :area_id
+    validates :day_id
   end
   validates :price, numericality: { greater_than: 299, less_than: 10000000, message: 'Out of setting range' }
   
