@@ -6,7 +6,7 @@ RSpec.describe Item, type: :model do
 
   describe "商品の保存" do
     context "出品できる場合"do
-      it "image,description,category_id,condition_id,fee_id,area_id,day_id,priceがあれば出品できる" do
+      it "image,description,category_id,condition_id,fee_id,area_id,day_id,price,user_idがあれば出品できる" do
         expect(@item).to be_valid
       end
       it "priceが半角数字なら出品できる" do
@@ -68,10 +68,35 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Price can't be blank"
       end
+      it "category_idが1では登録できない" do
+        @item.category_id = 1
+        @item.valid?     
+        expect(@item.errors.full_messages).to include "Category Select"
+      end
+      it "condition_idが1では登録できない" do
+        @item.condition_id = 1
+        @item.valid?        
+        expect(@item.errors.full_messages).to include "Condition Select"
+      end
+      it "fee_idが1では登録できない" do
+        @item.fee_id = 1
+        @item.valid?     
+        expect(@item.errors.full_messages).to include "Fee Select"
+      end
+      it "area_idが1では登録できない" do
+        @item.area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Area Select"
+      end
+      it "day_idが1では登録できない" do
+        @item.day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Day Select"
+      end
       it "priceが全角では登録できない" do
         @item.price = "１２３４５"
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price Out of setting range"
+        expect(@item.errors.full_messages).to include "Price Half-width number"
       end
       it "priceが299以下では登録できない" do
         @item.price = "299"
@@ -82,6 +107,11 @@ RSpec.describe Item, type: :model do
         @item.price = "10000000"
         @item.valid?
         expect(@item.errors.full_messages).to include "Price Out of setting range"
+      end
+      it "userが紐づいていないと登録できない" do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "User must exist"
       end
     end
   end
