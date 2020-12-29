@@ -1,5 +1,7 @@
 class Item < ApplicationRecord  
   extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :user
+  has_one_attached :image
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
   belongs_to_active_hash :fee
@@ -16,8 +18,9 @@ class Item < ApplicationRecord
     validates :fee_id, numericality: { other_than: 1 ,message: 'Select'}
     validates :area_id, numericality: { other_than: 1 ,message: 'Select'}
     validates :day_id, numericality: { other_than: 1 ,message: 'Select'}
-    validates :price, format: { with: /\A[0-9]+\z/, message: 'Half-width number'}, numericality: { greater_than: 299, less_than: 10000000, message: 'Out of setting range' }
+    VALID_PRICE_HALF = /\A[0-9]+\z/
+    validates :price, format: { with: VALID_PRICE_HALF, message: 'Half-width number'}, numericality: { greater_than: 299, less_than: 10000000, message: 'Out of setting range' }
   end
-  has_one_attached :image
+  
   
 end
