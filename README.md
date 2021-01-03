@@ -48,10 +48,10 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping
+- has_one :order
 
 
-## shippings テーブル
+## orders テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | -----------| ------------------------------ |
