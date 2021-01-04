@@ -7,7 +7,7 @@ class OrderRecord
     validates :prefecture_id, numericality: { other_than: 0 ,message: 'Select'}
     validates :municipalities
     validates :address
-    validates :phone, numericality: { with: /\A\d{11}\z/ }
+    validates :phone, numericality: { with: /\A\d{11}\z/, message: "number Input only number" }
     validates :user_id
     validates :item_id
   end
