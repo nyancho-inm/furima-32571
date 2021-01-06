@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe OrderRecord, type: :model do
   describe '購入情報の保存' do
     before do
-      @order_record = FactoryBot.build(:order_record)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      sleep 1
+      @order_record = FactoryBot.build(:order_record, user_id: user.id, item_id: item.id)
     end
 
     context '保存できる場合' do
