@@ -24,7 +24,7 @@ RSpec.describe OrderRecord, type: :model do
         @order_record.valid?
         expect(@order_record.errors.full_messages).to include "Postal can't be blank"
       end
-      it 'postaにハイフンがないと保存できない' do
+      it 'postalにハイフンがないと保存できない' do
         @order_record.postal = 1234567
         @order_record.valid?
         expect(@order_record.errors.full_messages).to include "Postal is invalid. Include hyphen(-)"
@@ -59,6 +59,13 @@ RSpec.describe OrderRecord, type: :model do
         @order_record.valid?
         expect(@order_record.errors.full_messages).to include
       end
+
+      it 'phoneが数字のみでないと保存できない' do
+        @order_record.phone = 'aaaaaaaaaaa'
+        @order_record.valid?
+        expect(@order_record.errors.full_messages).to include
+      end
+
       it 'user_idが空では保存できない' do
         @order_record.user_id = nil
         @order_record.valid?
