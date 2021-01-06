@@ -66,6 +66,12 @@ RSpec.describe OrderRecord, type: :model do
         @order_record.valid?
         expect(@order_record.errors.full_messages).to include "Item can't be blank"
       end
+
+      it 'tokenが空では保存できない' do
+        @order_record.token = nil
+        @order_record.valid?
+        expect(@order_record.errors.full_messages).to include "Token can't be blank"
+      end
     end
   end
 end

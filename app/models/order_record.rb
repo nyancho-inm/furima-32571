@@ -1,6 +1,6 @@
 class OrderRecord
   include ActiveModel::Model
-  attr_accessor :user_id,:item_id, :postal, :prefecture_id, :municipalities, :address, :phone, :building
+  attr_accessor :user_id,:item_id, :postal, :prefecture_id, :municipalities, :address, :phone, :building, :token
 
   with_options presence: true do
     validates :postal, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
@@ -10,6 +10,7 @@ class OrderRecord
     validates :phone, numericality: { with: /\A\d{11}\z/, message: "number Input only number" }
     validates :user_id
     validates :item_id
+    validates :token 
   end
   
 
