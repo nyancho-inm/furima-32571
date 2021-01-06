@@ -29,8 +29,13 @@ RSpec.describe OrderRecord, type: :model do
         @order_record.valid?
         expect(@order_record.errors.full_messages).to include "Postal is invalid. Include hyphen(-)"
       end
-      it 'prefecture_idが空では保存できない' do
+      it 'prefecture_idが0では保存できない' do
         @order_record.prefecture_id = 0
+        @order_record.valid?
+        expect(@order_record.errors.full_messages).to include "Prefecture Select"
+      end
+      it 'prefecture_idが空では保存できない' do
+        @order_record.prefecture_id = nil
         @order_record.valid?
         expect(@order_record.errors.full_messages).to include "Prefecture Select"
       end
