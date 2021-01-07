@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
-  before_action :set_record, only: [:edit, :update, :destroy]
   before_action :exhibition_confirmation, only: [:edit, :update, :destroy]
 
   def index
@@ -58,10 +57,6 @@ class ItemsController < ApplicationController
 
   def contributor_confirmation
     redirect_to root_path unless current_user.id == @item.user_id 
-  end
-  
-  def set_record
-    @record = Record.find(params[:id])
   end
 
   def exhibition_confirmation
