@@ -18,16 +18,16 @@ class Item < ApplicationRecord
     validates :area_id
     validates :day_id
     VALID_PRICE_HALF = /\A[0-9]+\z/
-    validates :price, numericality: { with: VALID_PRICE_HALF, message: 'Half-width number'}               
+    validates :price, numericality: { with: VALID_PRICE_HALF, message: 'は半角数字で入力してください'}               
   end
 
-  with_options numericality:{ other_than: 1 ,message: 'Select'} do
+  with_options numericality:{ other_than: 1 ,message: 'を選択してください'} do
     validates :category_id
     validates :condition_id
     validates :fee_id
     validates :area_id
     validates :day_id
   end
-  validates :price, numericality: { greater_than: 299, less_than: 10000000, message: 'Out of setting range' }
+  validates :price, numericality: { greater_than: 299, less_than: 10000000, message: '価格が設定範囲外です' }
   
 end
