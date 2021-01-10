@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :fee
   belongs_to_active_hash :area
   belongs_to_active_hash :day
+  has_many :messages, dependent: :destroy
 
   with_options presence: true do
     validates :image
