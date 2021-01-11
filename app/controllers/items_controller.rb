@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
 
   def show
     @message = Message.new
-    @messages = Message.all
+    @messages = @item.messages.includes(:user)
   end
 
   def edit

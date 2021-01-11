@@ -80,12 +80,14 @@
   <%# /商品の概要 %>
   <% if user_signed_in? %>
     <div class="comment-box">
+      <p>< コメント一覧 ></p>
       <div id='messages'>
-        <p>< コメント一覧 ></p>
-        <% @messages.reverse_each do |message| %>
-          <strong><%= message.user.nickname %>:</strong>
-          <%= message.text %>
-        </p>
+        <% if @messages %>
+          <% @messages.reverse_each do |message| %>
+            <p>
+              <%= message.text %>
+            </p>
+          <% end %>
         <% end %>
       </div>
       <%= form_with model: [@item, @message], class: 'form', local: true do |f| %>
