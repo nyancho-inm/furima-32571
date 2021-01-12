@@ -80,28 +80,28 @@
   <%# /商品の概要 %>
   <% if user_signed_in? %>
     <div class="comment-box">
-      <p>< コメント一覧 ></p>
-      <div id='messages'>
-        <% if @messages %>
+     <% if @messages && @item.record.nil? %>
+        <p>< コメント一覧 ></p>
+        <div id='messages'>
           <% @messages.reverse_each do |message| %>
             <p>
               <strong><%= message.user.nickname %>:</strong>
               <%= message.text %>
             </p>
+          <% end %>   
+        </div>
+        <%= form_with model: [@item, @message], class: 'form', local: true do |f| %>
+          <%= f.text_area :text, class: "comment-text", id: "message_text" %>
+          <p class="comment-warn">
+            相手のことを考え丁寧なコメントを心がけましょう。
+            <br>
+            不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          </p>
+          <%= f.button type: "submit" ,class: "comment-btn" do %>
+            <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+            <span>コメントする<span>
           <% end %>
-        <% end %>
-      </div>
-      <%= form_with model: [@item, @message], class: 'form', local: true do |f| %>
-        <%= f.text_area :text, class: "comment-text", id: "message_text" %>
-        <p class="comment-warn">
-          相手のことを考え丁寧なコメントを心がけましょう。
-          <br>
-          不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        </p>
-        <%= f.button type: "submit" ,class: "comment-btn" do %>
-          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-          <span>コメントする<span>
-        <% end %>
+        <% end %>    
       <% end %>
     </div>
   <% end %>
