@@ -6,16 +6,18 @@
     <h2 class="name">
       <%= @item.item_name %>
     </h2>
-    <div class='item-img-content'>
-      <%= image_tag @item.image ,class:"item-box-img" %>
-
-      <% if @item.record.present? %>
-        <div class='sold-out'>
-        <span>Sold Out!!</span>
-        </div>
-      <% end %>
-
-    </div>
+    
+      <div class='item-img-content'>
+       <% @item.images.each do |image| %>
+          <%= image_tag image, class:"item-box-img" %>
+       <% end %>
+        <% if @item.record.present? %>
+          <div class='sold-out'>
+          <span>Sold Out!!</span>
+          </div>
+        <% end %>
+      </div>
+   
     <div class="item-price-box">
       <span class="item-price">
         <%= @item.price %>
@@ -24,7 +26,7 @@
         <%= @item.fee.name %>
       </span>
     </div>
-
+  
     <% if user_signed_in? && @item.record.nil? %>
       <% if current_user.id == @item.user_id %>
         <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
