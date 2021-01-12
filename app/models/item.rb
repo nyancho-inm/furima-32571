@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
   has_one :record
-  has_one_attached :image
+  has_many_attached :images
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
   belongs_to_active_hash :fee
@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   with_options presence: true do
-    validates :image
+    #validates :image
     validates :item_name
     validates :description
     validates :category_id
